@@ -2,13 +2,14 @@
 const db = require("../config/connection");
 const { JIMDBData } = require("../models");
 
-const jdbData = require("./jdbData.json");
+const studio = require("./studio.json");
+const user = require("./user.json");
 
-db.once("open", async () => {
-  await JIMDBData.deleteMany({});
+db.once("open", async () => {});
+//   await JIMDBData.deleteMany({});
 
-  const placeholderData = await JIMDBData.insertMany(jdbData);
+//   const placeholderData = await JIMDBData.insertMany(jdbData);
 
-  console.log("JIMDBData seeded with placeholder data!");
-  process.exit(0);
-});
+//   console.log("JIMDBData seeded with placeholder data!");
+//   process.exit(0);
+// }
