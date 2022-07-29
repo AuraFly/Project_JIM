@@ -1,4 +1,4 @@
-//JIMDBData is just a placeholder collection! Feel free to alter and remove!
-const JIMDBData = require("./JIMDBData");
+const User = require("./User");
+const Studio = require("./Studio");
 
-module.exports = { JIMDBData };
+module.exports = { User, Studio };
