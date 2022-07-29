@@ -1,10 +1,9 @@
-//JIMDBData is just a placeholder collection! Feel free to alter and remove!
-const { JIMDBData } = require("../models");
+const { Studio, User } = require("../models");
 
 const resolvers = {
   Query: {
-    testdata: async () => {
-      return await JIMDBData.find({});
+    udata: async () => {
+      return await User.find({});
     },
   },
 };

@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
 
 const studioSchema = new Schema({
   studioName: {
@@ -7,18 +6,17 @@ const studioSchema = new Schema({
     trim: true,
     require: true,
   },
-
   ownerName: {
     type: String,
     trim: true,
     require: true,
   },
-
   phone: {
     type: String,
     require: true,
   },
 });
 
-const Studio = mongoose.model("Studio", studioSchema);
+const Studio = model("Studio", studioSchema);
+
 module.exports = Studio;

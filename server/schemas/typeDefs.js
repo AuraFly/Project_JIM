@@ -41,6 +41,10 @@ const typeDefs = gql`
     ): User
     login(email: String!, password: String!): Auth
   }
+
+  type Query {
+    udata: [User]
+  }
 `;
 
 module.exports = typeDefs;
