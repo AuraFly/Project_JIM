@@ -10,6 +10,6 @@ router.use((req, res) => {
 
 //test only, can be deleted
 const { getTest } = require("../controllers/test");
-router.get("/test", getTest);
+//router.get("/test", getTest);
 
 module.exports = router;
