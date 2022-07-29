@@ -1,16 +1,45 @@
-//JIMDBData is just a placeholder collection! Feel free to alter and remove!
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type JIMDBData {
+  type Category {
     _id: ID
     name: String
-    building: String
-    creditHours: Int
   }
 
-  type Query {
-    testdata: [JIMDBData]
+  type Studio {
+    _id: ID
+    studioName: String
+    ownerName: String
+    phone: String
+  }
+
+  type User {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    instructorNumber: String
+  }
+
+  type Auth {
+    token: ID
+    user: User
+  }
+
+  type Mutation {
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
+    updateUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
+    login(email: String!, password: String!): Auth
   }
 `;
 
