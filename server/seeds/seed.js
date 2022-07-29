@@ -2,6 +2,7 @@ const db = require("../config/connection");
 const { User } = require("../models");
 const { Studio } = require("../models");
 
+
 const studioData = require("./studio.json");
 const userData = require("./user.json");
 
