@@ -42,8 +42,17 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
   }
 
+  type Reminder {
+    _id: ID
+    reminderText: String
+    createdAt: String
+  }
+
   type Query {
-    udata: [User]
+    users: [User]
+    user(username: String!): User
+    reminder(username: String): [Reminder]
+    me: User
   }
 `;
 
