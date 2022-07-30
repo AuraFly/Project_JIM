@@ -3,7 +3,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const cors = require("cors");
-const routes = require("./routes");
+// const routes = require("./routes");
 
 //db
 const { typeDefs, resolvers } = require("./schemas");
@@ -34,7 +34,8 @@ app.get("/", (req, res) => {
 app.use(cors({ origin: true, credentials: true }));
 
 //routes
-app.use(routes);
+// app.use(routes);
+app.use("/api", require("./routes/api-route"));
 
 //listener
 const startApolloServer = async (typeDefs, resolvers) => {

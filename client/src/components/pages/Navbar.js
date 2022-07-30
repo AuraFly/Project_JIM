@@ -4,7 +4,7 @@ function Navbar({ currentPage, handlePageChange }) {
   return (
     <header className="bg-green-800 md:sticky top-0 z-10">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a className="title-font font-medium text-white mb-4 md:mb-0 ml-3 text-xl">
+        <div className="title-font font-medium text-white mb-4 md:mb-0 ml-3 text-xl">
           <a
             href="#About"
             onClick={() => handlePageChange("About")}
@@ -12,7 +12,7 @@ function Navbar({ currentPage, handlePageChange }) {
           >
             J.I.M. App
           </a>
-        </a>
+        </div>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
           <a
             href="#Calendar"
@@ -40,9 +40,8 @@ function Navbar({ currentPage, handlePageChange }) {
             <p className="mr-5 hover:text-white">Login</p>
           </a>
         </nav>
-
-        <div class="w-full block flex-grow  lg:flex justify-end lg:items-center lg:w-auto">
-          <div class="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
+        <div className="w-full block flex-grow  lg:flex justify-end lg:items-center lg:w-auto">
+          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
             <a href="https://www.linkedin.com/in/jcov/">
               <img
                 src="./IMGGOESHERE.webp"
@@ -52,7 +51,7 @@ function Navbar({ currentPage, handlePageChange }) {
               />
             </a>
           </div>
-          <div class="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
+          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
             <a href="https://github.com/AuraFly">
               <img
                 src="./IMG2GOESHERE.webp"
@@ -62,7 +61,7 @@ function Navbar({ currentPage, handlePageChange }) {
               />
             </a>
           </div>
-          <div class="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
+          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
             <a href="mailto:AuraFlyDev@gmail.com">
               <img
                 src="./IMG3GOESHERE.webp"
@@ -72,7 +71,7 @@ function Navbar({ currentPage, handlePageChange }) {
               />
             </a>
           </div>
-          <div class="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
+          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
             <a href="https://drive.google.com/file/d/1Q1wwNwJCbJkle2L6GyKnZGr8cA6P3R-t/view?usp=sharing">
               <img
                 src="./IMG4GOESHERE.webp"
