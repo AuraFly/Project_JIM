@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 
 export default function Maincontainer() {
   const [currentPage, setCurrentPage] = useState("Aboutme");
@@ -20,6 +21,14 @@ export default function Maincontainer() {
     if (currentPage === "Calendar") {
       return (
         <Calendar
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
+      );
+    }
+    if (currentPage === "Landing") {
+      return (
+        <Landing
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
