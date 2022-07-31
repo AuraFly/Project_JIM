@@ -1,14 +1,14 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User, Reminder } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Studio, Reminder } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('reminders');
+      return User.find().populate("reminders");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('reminders');
+      return User.findOne({ username }).populate("reminders");
     },
     reminders: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -19,15 +19,15 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('reminders');
+        return User.findOne({ _id: context.user._id }).populate("reminders");
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { firstName, lastName, email, password, instructorNumber }) => {
+      const user = await User.create({ firstName, lastName, email, password, instructorNumber });
       const token = signToken(user);
       return { token, user };
     },
@@ -35,13 +35,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError("No user found with this email address");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
@@ -62,15 +62,13 @@ const resolvers = {
 
         return reminder;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-    
-    },
+
     removeReminder: async (parent, { reminderId }, context) => {
       if (context.user) {
         const reminder = await Reminder.findOneAndDelete({
           _id: reminderId,
-          reminderAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
@@ -80,9 +78,9 @@ const resolvers = {
 
         return reminder;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-    
-};
+  }
+}
 
 module.exports = resolvers;
