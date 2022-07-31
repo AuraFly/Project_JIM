@@ -15,7 +15,7 @@ const Footer = () => {
       <ItemsContainer />
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10
-        text-center pt-2 text-gray-400 text-sm pb-8"
+        text-center pt-2 text-gray-400 text-sm pb-8 bg-green-900"
       >
         <span></span>
         <span>Created by DU BOOTCAMP Group 2 (BEST GROUP) </span>

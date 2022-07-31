@@ -31,6 +31,28 @@ router.post("/create-tokens", async (req, res, next) => {
 
 router.post("/create-event", async (req, res, next) => {
   try {
+    const { summary, description, location, startDateTime, endDateTime } =
+      req.body;
+    //will need to insert refresh token from DB here
+    oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+    const calendar = google.calendar("v3");
+    const response = await calendar.events.insert({
+      auth: oauth2Client,
+      calendarId: "primary",
+      requestBody: {
+        summary: summary,
+        descritpion: description,
+        location: location,
+        colorId: "10",
+        start: {
+          dateTime: new Date(startDateTime),
+        },
+        end: {
+          dateTime: new Date(endDateTime),
+        },
+      },
+    });
+    res.send(response);
   } catch (error) {
     next(error);
   }
