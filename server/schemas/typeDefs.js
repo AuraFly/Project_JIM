@@ -26,12 +26,19 @@ const typeDefs = gql`
     user: User
   }
 
+  type Reminder {
+    _id: ID
+    reminderText: String
+    createdAt: String
+  }
+
   type Mutation {
     addUser(
       firstName: String!
       lastName: String!
       email: String!
       password: String!
+      instructorNumber:String!
     ): Auth
     updateUser(
       firstName: String
@@ -40,18 +47,15 @@ const typeDefs = gql`
       password: String
     ): User
     login(email: String!, password: String!): Auth
-  }
-
-  type Reminder {
-    _id: ID
-    reminderText: String
-    createdAt: String
+    addReminder(reminderText: String): Reminder
+    removeReminder(reminderId: ID): Reminder
   }
 
   type Query {
     users: [User]
     user(username: String!): User
-    reminder(username: String): [Reminder]
+    reminders(username: String): [Reminder]
+    reminder(reminderId: ID): Reminder
     me: User
   }
 `;
