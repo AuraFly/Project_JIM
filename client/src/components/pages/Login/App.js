@@ -1,13 +1,12 @@
-import Register from './Register';
-import Login from './Login';
+import Register from "./Register";
+import Login from "./index";
 
 function App() {
-
-    return (
+  return (
     <main className="App">
-        <Login />
+      <Login />
     </main>
-);
+  );
 }
 
 export default App;

@@ -10,7 +10,7 @@ const Landing = () => {
   const Reminders = data?.Reminders || [];
 
   return (
-    <main>
+    <div>
       <div className="flex-row justify-center">
         <div
           className="col-12 col-md-10 mb-3 p-3"
@@ -29,7 +29,7 @@ const Landing = () => {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
