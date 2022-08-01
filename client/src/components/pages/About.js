@@ -16,10 +16,10 @@ function Aboutme({ currentPage, handlePageChange }) {
           </p>
           <div className="flex justify-center">
             <a
-              href="#LOGIN"
-              onClick={() => handlePageChange("LOGIN")}
+              href="#Login"
+              onClick={() => handlePageChange("Login")}
               className={
-                currentPage === "LOGIN" ? "nav-link active" : "nav-link"
+                currentPage === "Login" ? "nav-link active" : "nav-link"
               }
             >
               <p className="mr-10 inline-flex text-white bg-green-800 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">

@@ -4,8 +4,10 @@ import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
-import Login from "./pages/Login";
+import Login from "./pages/Login/index";
+import Register from "./pages/Login/Register";
 import Landing from "./pages/Landing";
+import { AuthProvider } from "./pages/Login/context/AuthProvider";
 
 export default function Maincontainer() {
   const [currentPage, setCurrentPage] = useState("Aboutme");
@@ -34,6 +36,16 @@ export default function Maincontainer() {
         />
       );
     }
+    if (currentPage === "Register") {
+      return (
+        <AuthProvider>
+          <Register
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </AuthProvider>
+      );
+    }
     if (currentPage === "Contact") {
       return (
         <Contact
@@ -43,7 +55,14 @@ export default function Maincontainer() {
       );
     }
     if (currentPage === "Login") {
-      return <Login />;
+      return (
+        <AuthProvider>
+          <Login
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </AuthProvider>
+      );
     }
     return <About />;
   };
