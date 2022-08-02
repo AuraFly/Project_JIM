@@ -6,6 +6,7 @@ const { Reminder } = require("../models");
 
 const studioData = require("./studio.json");
 const userData = require("./user.json");
+const reminderData = require("./reminder.json");
 
 db.once("open", async () => {
   await User.deleteMany({});
@@ -14,8 +15,8 @@ db.once("open", async () => {
   await Studio.deleteMany({});
   const studiosData = await Studio.insertMany(studioData);
 
-  await ReminderList.deleteMany({});
-  const reminderData = await Studio.insertMany(reminderData);
+  await Reminder.deleteMany({});
+  const remindersData = await Reminder.insertMany(reminderData);
 
   console.log("JIMDB seeded with user, and stuido data!");
   process.exit(0);

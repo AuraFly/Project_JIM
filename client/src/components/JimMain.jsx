@@ -8,6 +8,7 @@ import Login from "./pages/Login/index";
 import Register from "./pages/Login/Register";
 import Landing from "./pages/Landing";
 import { AuthProvider } from "./pages/Login/context/AuthProvider";
+import Profile from "./Form"
 
 export default function Maincontainer() {
   const [currentPage, setCurrentPage] = useState("Aboutme");
@@ -15,6 +16,12 @@ export default function Maincontainer() {
   // This method is checking to see what the value of `currentPage` is.
   // Depending on the value of currentPage, we return the corresponding component to render.
   const renderPage = () => {
+    if (currentPage === "Profile") {
+      return (
+        <Profile currentPage={currentPage} handlePageChange={handlePageChange} />
+      );
+    }
+
     if (currentPage === "About") {
       return (
         <About currentPage={currentPage} handlePageChange={handlePageChange} />
