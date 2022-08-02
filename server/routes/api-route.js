@@ -59,6 +59,7 @@ router.post("/create-event", async (req, res, next) => {
   }
 });
 
-router.route ("/profile").post(protect, updateUserProfile)
+// router.route ("/profile").post(protect, updateUserProfile)
+//this was breaking the app N
 
 module.exports = router;
