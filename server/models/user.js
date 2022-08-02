@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const Order = require("./Order");
 
 const userSchema = new Schema({
   firstName: {
@@ -22,6 +23,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+<<<<<<< HEAD
 
   instructorNumber: {
     type: String,
@@ -53,6 +55,10 @@ const userSchema = new Schema({
   }
 
 );
+=======
+  orders: [Order.schema],
+});
+>>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
 
 // set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {

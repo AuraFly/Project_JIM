@@ -1,41 +1,178 @@
 const { AuthenticationError } = require("apollo-server-express");
+<<<<<<< HEAD
 const { User, Studio, Reminder } = require("../models");
 const { signToken } = require("../utils/generateToken");
+=======
+const {
+  User,
+  Studio,
+  Reminder,
+  Product,
+  Category,
+  Order,
+} = require("../models");
+const { signToken } = require("../utils/auth");
+const stripe = require("stripe")(
+  "pk_test_51LS2bvEmTHirmFazVgkgqYkMIg7Pk5EWGCsKHtzbJ6Tr4eJGdrllS2B0uUUXXZGE8DBLyWBX2eP9YigdlHYqKPKJ00z7M6WDzq"
+);
+>>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find().populate("reminders");
+    categories: async () => {
+      return await Category.find();
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("reminders");
-    },
-    reminders: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Reminder.find(params).sort({ createdAt: -1 });
-    },
-    reminder: async (parent, { reminderId }) => {
-      return Reminder.findOne({ _id: reminderId });
-    },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("reminders");
+    products: async (parent, { category, name }) => {
+      const params = {};
+
+      if (category) {
+        params.category = category;
       }
-      throw new AuthenticationError("You need to be logged in!");
+
+      if (name) {
+        params.name = {
+          $regex: name,
+        };
+      }
+
+      return await Product.find(params).populate("category");
+    },
+    product: async (parent, { _id }) => {
+      return await Product.findById(_id).populate("category");
+    },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: "orders.products",
+          populate: "category",
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: "orders.products",
+          populate: "category",
+        });
+
+        return user.orders.id(_id);
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ products: args.products });
+      const line_items = [];
+
+      const { products } = await order.populate("products");
+
+      for (let i = 0; i < products.length; i++) {
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description,
+          images: [`${url}/images/${products[i].image}`],
+        });
+
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: "usd",
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: 1,
+        });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items,
+        mode: "payment",
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
     },
   },
+  // users: async () => {
+  //   return User.find().populate("reminders");
+  // },
+  // user: async (parent, { username }) => {
+  //   return User.findOne({ username }).populate("reminders");
+  // },
+  // reminders: async (parent, { username }) => {
+  //   const params = username ? { username } : {};
+  //   return Reminder.find(params).sort({ createdAt: -1 });
+  // },
+  // reminder: async (parent, { reminderId }) => {
+  //   return Reminder.findOne({ _id: reminderId });
+  // },
+  // me: async (parent, args, context) => {
+  //   if (context.user) {
+  //     return User.findOne({ _id: context.user._id }).populate("reminders");
+  //   }
+  //   throw new AuthenticationError("You need to be logged in!");
+  // }
 
   Mutation: {
+<<<<<<< HEAD
     addUser: async (parent, { firstName, lastName, email, password, instructorNumber, isAdmin, pic }) => {
       const user = await User.create({ firstName, lastName, email, password, instructorNumber, isAdmin, pic });
+=======
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+>>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
       const token = signToken(user);
+
       return { token, user };
+    },
+    addOrder: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order },
+        });
+
+        return order;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    updateProduct: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
+
+      return await Product.findByIdAndUpdate(
+        _id,
+        { $inc: { quantity: decrement } },
+        { new: true }
+      );
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("No user found with this email address");
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -48,39 +185,105 @@ const resolvers = {
 
       return { token, user };
     },
-    addReminder: async (parent, { reminderText }, context) => {
-      if (context.user) {
-        const reminder = await Reminder.create({
-          reminderText,
-          //took out author
-        });
+  },
+};
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { reminders: reminder._id } }
-        );
+//     addUser: async (
+//       parent,
+//       { firstName, lastName, email, password, instructorNumber }
+//     ) => {
+//       const user = await User.create({
+//         firstName,
+//         lastName,
+//         email,
+//         password,
+//         instructorNumber,
+//       });
+//       const token = signToken(user);
+//       return { token, user };
+//     },
+//     login: async (parent, { email, password }) => {
+//       const user = await User.findOne({ email });
 
-        return reminder;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+//       if (!user) {
+//         throw new AuthenticationError("No user found with this email address");
+//       }
 
-    removeReminder: async (parent, { reminderId }, context) => {
-      if (context.user) {
-        const reminder = await Reminder.findOneAndDelete({
-          _id: reminderId,
-        });
+//       const correctPw = await user.isCorrectPassword(password);
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { reminders: reminder._id } }
-        );
+//       if (!correctPw) {
+//         throw new AuthenticationError("Incorrect credentials");
+//       }
 
-        return reminder;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-  }
-}
+//       const token = signToken(user);
+
+//       return { token, user };
+//     },
+//     addReminder: async (parent, { reminderText }, context) => {
+//       if (context.user) {
+//         const reminder = await Reminder.create({
+//           reminderText,
+//           //took out author
+//         });
+
+//         await User.findOneAndUpdate(
+//           { _id: context.user._id },
+//           { $addToSet: { reminders: reminder._id } }
+//         );
+
+//         return reminder;
+//       }
+//       throw new AuthenticationError("You need to be logged in!");
+//     },
+
+//     removeReminder: async (parent, { reminderId }, context) => {
+//       if (context.user) {
+//         const reminder = await Reminder.findOneAndDelete({
+//           _id: reminderId,
+//         });
+
+//         await User.findOneAndUpdate(
+//           { _id: context.user._id },
+//           { $pull: { reminders: reminder._id } }
+//         );
+
+//         return reminder;
+//       }
+//       throw new AuthenticationError("You need to be logged in!");
+//     },
+//     addOrder: async (parent, { products }, context) => {
+//       console.log(context);
+//       if (context.user) {
+//         const order = new Order({ products });
+
+//         await User.findByIdAndUpdate(context.user._id, {
+//           $push: { orders: order },
+//         });
+
+//         return order;
+//       }
+
+//       throw new AuthenticationError("Not logged in");
+//     },
+//     updateUser: async (parent, args, context) => {
+//       if (context.user) {
+//         return await User.findByIdAndUpdate(context.user._id, args, {
+//           new: true,
+//         });
+//       }
+
+//       throw new AuthenticationError("Not logged in");
+//     },
+//     updateProduct: async (parent, { _id, quantity }) => {
+//       const decrement = Math.abs(quantity) * -1;
+
+//       return await Product.findByIdAndUpdate(
+//         _id,
+//         { $inc: { quantity: decrement } },
+//         { new: true }
+//       );
+//     },
+//   },
+// };
 
 module.exports = resolvers;

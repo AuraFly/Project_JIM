@@ -3,10 +3,14 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const cors = require("cors");
+<<<<<<< HEAD
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 //user routes added
 const userRoutes = require('./routes/userRoutes')
+=======
+const { authMiddleware } = require("./utils/auth");
+>>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
 
 // const routes = require("./routes");
 
@@ -22,10 +26,12 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "../client/images")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

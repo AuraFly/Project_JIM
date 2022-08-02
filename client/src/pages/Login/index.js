@@ -69,7 +69,7 @@ const Login = ({ currentPage, handlePageChange }) => {
           </p>
         </section>
       ) : (
-        <section className="sections">
+        <section className="login-box">
           <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
@@ -78,34 +78,41 @@ const Login = ({ currentPage, handlePageChange }) => {
             {errMsg}
           </p>
 
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
-            Sign In
-          </h1>
-          <form onSubmit={handleSubmit} className="forms">
-            <label className="labels" htmlFor="username">
-              Username:
-            </label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
-
-            <label className="labels" htmlFor="password">
-              Password:
-            </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
-            <button className="buttons">Sign In</button>
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit}>
+            <div class="user-box">
+              <label className="labels" htmlFor="username">
+                Username:
+              </label>
+              <input
+                type="text"
+                id="username"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                required
+              />
+            </div>
+            <div class="user-box">
+              <label className="labels" htmlFor="password">
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required
+              />
+            </div>
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Submit
+            </a>
           </form>
           <p>
             Need an Account?

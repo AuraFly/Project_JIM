@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
 import { useMutation } from "@apollo/client";
 
-import { ADD_REMINDER } from "../../utils/mutations";
-import { QUERY_REMINDERS, QUERY_ME } from "../../utils/queries";
+import { ADD_REMINDER } from "../../../utils/mutations";
+import { QUERY_REMINDERS, QUERY_ME } from "../../../utils/queries";
 
-import Auth from "../../utils/auth";
+import Auth from "../../../utils/auth";
 
 const ReminderForm = () => {
   const [reminderText, setReminderText] = useState("");
