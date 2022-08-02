@@ -15,13 +15,8 @@
     "@testing-library/user-event": "^13.5.0",
     "auth-provider": "^0.6.2",
     "axios": "^0.27.2",
-<<<<<<< HEAD
-    "bootstrap": "^5.2.0",
-    "gsap": "^3.10.4",
-=======
     "graphql": "^16.5.0",
     "gsap": "npm:@gsap/shockingly@^3.10.4",
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
     "jwt-decode": "^3.1.2",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",

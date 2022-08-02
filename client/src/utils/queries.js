@@ -102,18 +102,15 @@ export const QUERY_REMINDERS = gql`
   }
 `;
 
-<<<<<<< HEAD
 export const QUERY_SINGLE_REMINDER = gql`
   query getSinglereminder($reminderId: ID!) {
     reminder(reminderId: $reminderId) {
       _id
       reminderText
       createdAt
-      
     }
   }
 `;
-=======
 // export const QUERY_CHECKOUT = gql`
 //   query getCheckout($products: [ID]!) {
 //     checkout(products: $products) {
@@ -161,7 +158,6 @@ export const QUERY_SINGLE_REMINDER = gql`
 //     }
 //   }
 // `;
->>>>>>> 12c94a0 (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
 
 export const QUERY_ME = gql`
   query me {
