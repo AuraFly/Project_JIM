@@ -1,8 +1,4 @@
 const { AuthenticationError } = require("apollo-server-express");
-<<<<<<< HEAD
-const { User, Studio, Reminder } = require("../models");
-const { signToken } = require("../utils/generateToken");
-=======
 const {
   User,
   Studio,
@@ -15,7 +11,6 @@ const { signToken } = require("../utils/auth");
 const stripe = require("stripe")(
   "pk_test_51LS2bvEmTHirmFazVgkgqYkMIg7Pk5EWGCsKHtzbJ6Tr4eJGdrllS2B0uUUXXZGE8DBLyWBX2eP9YigdlHYqKPKJ00z7M6WDzq"
 );
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
 
 const resolvers = {
   Query: {
@@ -37,9 +32,11 @@ const resolvers = {
 
       return await Product.find(params).populate("category");
     },
+
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -54,6 +51,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -125,17 +123,24 @@ const resolvers = {
   // }
 
   Mutation: {
-<<<<<<< HEAD
-    addUser: async (parent, { firstName, lastName, email, password, instructorNumber, isAdmin, pic }) => {
-      const user = await User.create({ firstName, lastName, email, password, instructorNumber, isAdmin, pic });
-=======
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
+    addUser: async (
+      parent,
+      { firstName, lastName, email, password, instructorNumber, isAdmin, pic }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        instructorNumber,
+        isAdmin,
+        pic,
+      });
       const token = signToken(user);
 
       return { token, user };
     },
+
     addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {

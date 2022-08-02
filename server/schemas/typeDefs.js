@@ -27,17 +27,14 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-<<<<<<< HEAD
     instructorNumber: String
     isAdmin: Boolean
     pic: String
-=======
     orders: [Order]
   }
 
   type Checkout {
     session: ID
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
   }
 
   type Auth {
@@ -60,12 +57,8 @@ const typeDefs = gql`
       lastName: String!
       email: String!
       password: String!
-<<<<<<< HEAD
-      instructorNumber:String!
+      instructorNumber: String!
       isAdmin: String!
-      
-=======
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
     ): Auth
     addOrder(products: [ID]!): Order
     updateUser(

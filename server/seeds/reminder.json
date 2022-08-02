@@ -1,16 +1,8 @@
 [
   {
     "reminderText": "I subbed for Tiffany today at Broomfield Location"
-<<<<<<< HEAD
-    
   },
   {
     "reminderText": "I traded classes with Emily.  She Sunday, Me Today"
-    
-=======
-  },
-  {
-    "reminderText": "I traded classes with Emily.  She Sunday, Me Today"
->>>>>>> 394e64a (Worked on DB, Stripe, Store Page, Cover Page, SignIn Page)
   }
 ]
