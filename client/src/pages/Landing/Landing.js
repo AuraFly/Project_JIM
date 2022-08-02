@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import ReminderList from "../ReminderList/ReminderList";
-import ReminderForm from "../ReminderForm/ReminderForm";
+import ReminderList from "./ReminderList/ReminderList";
+import ReminderForm from "./ReminderForm/ReminderForm";
 
 import { QUERY_REMINDERS } from "../../utils/queries";
 

@@ -1,6 +1,31 @@
 import React from "react";
+import Auth from "../utils/auth";
 
 function Navbar({ currentPage, handlePageChange }) {
+  function showNavigation() {
+    if (Auth.loggedIn()) {
+      return (
+        <a
+          href="#About"
+          onClick={() => Auth.logout()}
+          className={currentPage === "Login" ? "nav-link active" : "nav-link"}
+        >
+          <p className="mr-5 hover:text-white">Logout</p>
+        </a>
+      );
+    } else {
+      return (
+        <a
+          href="#Login"
+          onClick={() => handlePageChange("Login")}
+          className={currentPage === "Login" ? "nav-link active" : "nav-link"}
+        >
+          <p className="mr-5 hover:text-white">Login</p>
+        </a>
+      );
+    }
+  }
+
   return (
     <header className="bg-green-800 md:sticky top-0 z-10">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -33,6 +58,13 @@ function Navbar({ currentPage, handlePageChange }) {
             <p className="mr-5 hover:text-white">Landing?</p>
           </a>
           <a
+            href="#Store"
+            onClick={() => handlePageChange("Store")}
+            className={currentPage === "Store" ? "nav-link active" : "nav-link"}
+          >
+            <p className="mr-5 hover:text-white">Store</p>
+          </a>
+          <a
             href="#Contact"
             onClick={() => handlePageChange("Contact")}
             className={
@@ -41,15 +73,9 @@ function Navbar({ currentPage, handlePageChange }) {
           >
             <p className="mr-5 hover:text-white">Contact Us</p>
           </a>
-          <a
-            href="#Login"
-            onClick={() => handlePageChange("Login")}
-            className={currentPage === "Login" ? "nav-link active" : "nav-link"}
-          >
-            <p className="mr-5 hover:text-white">Login</p>
-          </a>
+          {showNavigation()}
         </nav>
-        <div className="w-full block flex-grow  lg:flex justify-end lg:items-center lg:w-auto">
+        {/* <div className="w-full block flex-grow  lg:flex justify-end lg:items-center lg:w-auto">
           <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
             <a href="https://www.linkedin.com/in/jcov/">
               <img
@@ -89,8 +115,7 @@ function Navbar({ currentPage, handlePageChange }) {
                 title="ICON4"
               />
             </a>
-          </div>
-        </div>
+          </div> */}
       </div>
     </header>
   );

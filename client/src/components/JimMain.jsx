@@ -1,19 +1,47 @@
 import React, { useState } from "react";
-import Navbar from "./pages/Navbar";
-import Footer from "./pages/Footer";
-import About from "./pages/About";
-import Calendar from "./pages/Calendar";
-import Contact from "./pages/Contact";
-import Login from "./pages/Login/index";
-import Register from "./pages/Login/Register";
-import Landing from "./pages/Landing";
-import { AuthProvider } from "./pages/Login/context/AuthProvider";
+import { BrowserRouter as Router } from "react-router-dom";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { StoreProvider } from "../utils/GlobalState";
+
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import About from "../pages/About/About";
+import Calendar from "../pages/Calendar/Calendar";
+import Contact from "../pages/Contact/Contact";
+import Login from "../pages/Login/index";
+import Register from "../pages/Login/Register";
+import Landing from "../pages/Landing/Landing";
+import Store from "../pages/Store/Store";
+import { AuthProvider } from "../pages/Login/context/AuthProvider";
+
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 export default function Maincontainer() {
   const [currentPage, setCurrentPage] = useState("Aboutme");
 
-  // This method is checking to see what the value of `currentPage` is.
-  // Depending on the value of currentPage, we return the corresponding component to render.
   const renderPage = () => {
     if (currentPage === "About") {
       return (
@@ -36,14 +64,17 @@ export default function Maincontainer() {
         />
       );
     }
+    if (currentPage === "Store") {
+      return (
+        <Store currentPage={currentPage} handlePageChange={handlePageChange} />
+      );
+    }
     if (currentPage === "Register") {
       return (
-        <AuthProvider>
-          <Register
-            currentPage={currentPage}
-            handlePageChange={handlePageChange}
-          />
-        </AuthProvider>
+        <Register
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
       );
     }
     if (currentPage === "Contact") {
@@ -56,12 +87,7 @@ export default function Maincontainer() {
     }
     if (currentPage === "Login") {
       return (
-        <AuthProvider>
-          <Login
-            currentPage={currentPage}
-            handlePageChange={handlePageChange}
-          />
-        </AuthProvider>
+        <Login currentPage={currentPage} handlePageChange={handlePageChange} />
       );
     }
     return <About />;
@@ -70,12 +96,21 @@ export default function Maincontainer() {
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
-    <main className="bg-cover text-gray-400 bg-white-800 body-font">
-      {/* We are passing the currentPage from state and the function to update it */}
-      <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
-      {/* Here we are calling the renderPage method which will return a component  */}
-      {renderPage()}
-      <Footer />
-    </main>
+    <ApolloProvider client={client}>
+      <Router>
+        <StoreProvider>
+          <AuthProvider>
+            <main className="bg-cover text-gray-400 bg-white-800 body-font">
+              <Navbar
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+              />
+              {renderPage()}
+              <Footer />
+            </main>
+          </AuthProvider>
+        </StoreProvider>
+      </Router>
+    </ApolloProvider>
   );
 }
