@@ -6,9 +6,9 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      reminders {
         _id
-        thoughtText
+        reminderText
         createdAt
       }
     }
@@ -20,25 +20,18 @@ export const QUERY_REMINDERS = gql`
     reminders {
       _id
       reminderText
-      reminderAuthor
       createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_REMINDER = gql`
+  query getSinglereminder($reminderId: ID!) {
+    reminder(reminderId: $reminderId) {
       _id
-      thoughtText
-      thoughtAuthor
+      reminderText
       createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
+      
     }
   }
 `;
@@ -49,10 +42,9 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      thoughts {
+      reminders {
         _id
-        thoughtText
-        thoughtAuthor
+        reminderText
         createdAt
       }
     }
