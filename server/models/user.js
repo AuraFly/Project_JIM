@@ -34,7 +34,25 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
-});
+
+  isAdmin: {
+    //added 8/2 by N
+    type: Boolean,
+    required: true,
+    default: false,
+  }, 
+
+  pic: {
+    type: String,
+    required: true,
+    default: "https://icon-library.com/images/anonymous-avatar-icon-25.jpg",
+  },
+},
+  {
+    timestamps: true,   //to see when it was created
+  }
+
+);
 
 // set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {

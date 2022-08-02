@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { google } = require("googleapis");
 
+
 //these need to be hidden or stored for security purposes, for now they are here only for ease of testing
 const GOOGLE_CLIENT_ID =
   "944796361588-30hshik247bbc3i2cs2h9tm1i52qihvj.apps.googleusercontent.com";
@@ -57,5 +58,7 @@ router.post("/create-event", async (req, res, next) => {
     next(error);
   }
 });
+
+router.route ("/profile").post(protect, updateUserProfile)
 
 module.exports = router;
