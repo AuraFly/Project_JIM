@@ -42,7 +42,7 @@ const typeDefs = gql`
       password: String!
       instructorNumber:String!
       isAdmin: String!
-      pic: String!
+      
     ): Auth
     updateUser(
       firstName: String
