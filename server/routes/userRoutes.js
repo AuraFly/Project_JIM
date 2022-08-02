@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.route("/").post(registerUser);
 router.route("/login").post(authUser);
-router.route("/profile").post(protect, updateUserProfile);
+router.route("/profile").post(updateUserProfile); //took out "protect" from this route. it needs it but we don't have the functionality yet
 
 module.exports = router;
