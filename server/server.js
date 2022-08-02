@@ -3,6 +3,10 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const cors = require("cors");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+
+//user routes added
+const userRoutes = require('./routes/userRoutes')
 
 // const routes = require("./routes");
 
@@ -37,6 +41,13 @@ app.use(cors({ origin: true, credentials: true }));
 //routes
 // app.use(routes);
 app.use("/api", require("./routes/api-route"));
+
+//users routes
+
+app.use("/api/users", userRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 //listener
 const startApolloServer = async (typeDefs, resolvers) => {

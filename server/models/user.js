@@ -34,17 +34,49 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
-});
+
+  isAdmin: {
+    //added 8/2 by N
+    type: Boolean,
+    required: true,
+    default: false,
+  }, 
+
+  pic: {
+    type: String,
+    required: true,
+    default: "https://icon-library.com/images/anonymous-avatar-icon-25.jpg",
+  },
+},
+  {
+    timestamps: true,   //to see when it was created
+  }
+
+);
 
 // set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {
-  if (this.isNew || this.isModified("password")) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+  if(!this.isModified('password')) {
+    next();
   }
 
-  next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+
 });
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(this.password, this.password);
+};
+
+  //commented out 8/2 by N
+  // if (this.isNew || this.isModified("password")) {
+  //   const saltRounds = 10;
+  //   this.password = await bcrypt.hash(this.password, saltRounds);
+  // }
+
+  // next(); (ends here N)
+
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {

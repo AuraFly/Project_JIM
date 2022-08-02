@@ -19,6 +19,8 @@ const typeDefs = gql`
     lastName: String
     email: String
     instructorNumber: String
+    isAdmin: Boolean
+    pic: String
   }
 
   type Auth {
@@ -39,6 +41,8 @@ const typeDefs = gql`
       email: String!
       password: String!
       instructorNumber:String!
+      isAdmin: String!
+      
     ): Auth
     updateUser(
       firstName: String

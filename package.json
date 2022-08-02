@@ -15,5 +15,8 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.3.0"
+  },
+  "dependencies": {
+    "express-async-handler": "^1.2.0"
   }
 }
