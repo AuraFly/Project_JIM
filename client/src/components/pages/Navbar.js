@@ -24,6 +24,15 @@ function Navbar({ currentPage, handlePageChange }) {
             <p className="mr-5 hover:text-white">Calendar</p>
           </a>
           <a
+            href="#Profile"
+            onClick={() => handlePageChange("Profile")}
+            className={
+              currentPage === "Profile" ? "nav-link active" : "nav-link"
+            }
+          >
+            <p className="mr-5 hover:text-white">Profile</p>
+          </a>
+          <a
             href="#Landing"
             onClick={() => handlePageChange("Landing")}
             className={
