@@ -16,6 +16,7 @@ import Calendar from "../pages/Calendar/Calendar";
 import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/index";
 import Register from "../pages/Login/Register";
+import Profile from "..//components/Profile/Profile";
 import Landing from "../pages/Landing/Landing";
 import Store from "../pages/Store/Store";
 import { AuthProvider } from "../pages/Login/context/AuthProvider";
@@ -45,7 +46,10 @@ export default function Maincontainer() {
   const renderPage = () => {
     if (currentPage === "Profile") {
       return (
-        <Profile currentPage={currentPage} handlePageChange={handlePageChange} />
+        <Profile
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
       );
     }
 
