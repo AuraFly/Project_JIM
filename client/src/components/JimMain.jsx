@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+
 import Navbar from "./pages/Navbar";
 import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
-import Login from "./pages/Login/index";
-import Register from "./pages/Login/Register";
+// import Login from "./pages/Login/index"; //commented out the js files referenced could be deleted, they are empty
+// import Register from "./pages/Login/Register"; commented out 8/2 by N
 import Landing from "./pages/Landing";
 import { AuthProvider } from "./pages/Login/context/AuthProvider";
-import Profile from "./Form"
+import Profile from "./Form";
+
+import LandingPage from ".pages/LandingPage/LandingPage";
+import LoginPage from ".pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 export default function Maincontainer() {
   const [currentPage, setCurrentPage] = useState("Aboutme");
@@ -42,11 +47,20 @@ export default function Maincontainer() {
           handlePageChange={handlePageChange}
         />
       );
+
     }
-    if (currentPage === "Register") {
+      if (currentPage === "LandingPage") {
+        return (
+          <LandingPage
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        );  
+    }
+    if (currentPage === "RegisterPage") {
       return (
         <AuthProvider>
-          <Register
+          <RegisterPage
             currentPage={currentPage}
             handlePageChange={handlePageChange}
           />
@@ -61,10 +75,10 @@ export default function Maincontainer() {
         />
       );
     }
-    if (currentPage === "Login") {
+    if (currentPage === "LoginPage") {
       return (
         <AuthProvider>
-          <Login
+          <LoginPage
             currentPage={currentPage}
             handlePageChange={handlePageChange}
           />
@@ -86,3 +100,5 @@ export default function Maincontainer() {
     </main>
   );
 }
+
+
