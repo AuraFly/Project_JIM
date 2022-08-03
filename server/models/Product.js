@@ -28,6 +28,11 @@ const productSchema = new Schema({
     ref: "Category",
     required: true,
   },
+  likes: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);
