@@ -5,14 +5,14 @@ import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
-// import Login from "./pages/Login/index"; //commented out the js files referenced could be deleted, they are empty
-// import Register from "./pages/Login/Register"; commented out 8/2 by N
-import Landing from "./pages/Landing";
+// import LoginPage from "./pages/LoginPage/LoginPage"; 
+// import RegisterPage from "./pages/RegisterPage/RegisterPage"; 
+// import Landing from "./pages/Landing";
 import { AuthProvider } from "./pages/Login/context/AuthProvider";
 import Profile from "./Form";
 
-import LandingPage from ".pages/LandingPage/LandingPage";
-import LoginPage from ".pages/LoginPage/LoginPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import LoginPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 export default function Maincontainer() {
@@ -40,15 +40,15 @@ export default function Maincontainer() {
         />
       );
     }
-    if (currentPage === "Landing") {
-      return (
-        <Landing
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
-      );
+    // if (currentPage === "Landing") {
+    //   return (
+    //     <Landing
+    //       currentPage={currentPage}
+    //       handlePageChange={handlePageChange}
+    //     />
+    //   );
 
-    }
+    // }
       if (currentPage === "LandingPage") {
         return (
           <LandingPage

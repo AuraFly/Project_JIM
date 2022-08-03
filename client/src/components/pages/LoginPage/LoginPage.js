@@ -1,21 +1,24 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import MainPage from '../../MainPage/MainPage';
 import "./loginScreen.css"; 
-import axios from "axios";
-
+import { useEffect } from 'react';
 
 const LoginPage = ({history}) => {
-
-
 const {email, setEmail} = useState("")
 const {password, setPassword} = useState("");
 const {error, setError} = useState(false);
 const {loading, setLoading} = useState(false);
 
+useEffect(() => {
+  const userInfo = localStorage.setItem("userInfo", JSON.stringify(data));
 
+  if (userInfo) {
+  history.push("/reminders");
+}
+}, [history, userInfo]);
 
 const submitHandler = async (e) => {
 e.preventDefault();
@@ -49,10 +52,6 @@ setLoading(false);
 };
 
 
-
-
-
-
   return (
     <MainPage title="LOGIN">
       <div className="loginContainer">        
@@ -61,7 +60,7 @@ setLoading(false);
         <Form on onSubmit={submitHandler}>
           <Form.Group controlId='formBasicEmail'>
             <Form.Label> Email Address </Form.Label>
-            <Form.controlId
+            <Form.Control
             type="email"
             value={email}
             placeholder="Enter Email Address"/>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MainPage from '../../MainPage/MainPage';
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage"; 
 import Loading from "../../Loading/Loading";
-import { Link } from "react-router-dom";
-
+// import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
 
@@ -110,7 +109,7 @@ const postDetails = (pics) => {
       type="lastname"
       value={lastname}
       placeholder="Enter last name"
-      onChange={(e) => setName(e.target.value)}
+      onChange={(e) => setLastName(e.target.value)}
       />
     </Form.Group>
 
