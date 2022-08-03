@@ -6,5 +6,13 @@
     "password": "password123",
     "instructorNumber": "30130",
     "phone": "720-361-5805"
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Covarrubias",
+    "email": "auraflydev@gmail.com",
+    "password": "Password123",
+    "instructorNumber": "80237",
+    "phone": "720-295-2864"
   }
 ]

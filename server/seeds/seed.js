@@ -1,8 +1,5 @@
 const db = require("../config/connection");
-const { User } = require("../models");
-const { Studio } = require("../models");
-const { Reminder } = require("../models");
-
+const { User, Studio, Reminder, Product, Category } = require("../models");
 
 const studioData = require("./studio.json");
 const userData = require("./user.json");
@@ -18,6 +15,59 @@ db.once("open", async () => {
   await Reminder.deleteMany({});
   const remindersData = await Reminder.insertMany(reminderData);
 
-  console.log("JIMDB seeded with user, and stuido data!");
+  await Category.deleteMany({});
+  const categories = await Category.insertMany([
+    { name: "Services" },
+    { name: "Merchandise" },
+    { name: "Donation" },
+  ]);
+
+  const products = await Product.insertMany([
+    {
+      name: "Invoice - Basic",
+      description: "Baic invoice services.",
+      image: "inv1.png",
+      category: categories[0]._id,
+      price: 0.99,
+      quantity: 999,
+    },
+    {
+      name: "Invoice - Pro",
+      description: "Pro invoice services.",
+      image: "inv1.png",
+      category: categories[0]._id,
+      price: 2.99,
+      quantity: 999,
+    },
+    {
+      name: "J.I.M. Mug",
+      description: "JIM Logo coffee mug",
+      image: "mug.png",
+      category: categories[1]._id,
+      price: 9.99,
+      quantity: 25,
+    },
+    {
+      name: "J.I.M. T-Shirt",
+      description: "JIM Logo coffee mug",
+      image: "shirt.png",
+      category: categories[1]._id,
+      size: ["XS", "S", "M", "LG", "XL", "2XL"],
+      price: 15.99,
+      quantity: 25,
+    },
+    {
+      name: "Coffee Tip",
+      description: "Buy our dev team some coffee!",
+      image: "coffee.png",
+      category: categories[2]._id,
+      price: 9.99,
+      quantity: 25,
+    },
+  ]);
+
+  console.log(
+    "JIMDB seeded with user, studio, product, reminder, and category data!"
+  );
   process.exit(0);
 });

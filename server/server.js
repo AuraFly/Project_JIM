@@ -6,7 +6,8 @@ const cors = require("cors");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 //user routes added
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require("./routes/userRoutes");
+const { authMiddleware } = require("./utils/auth");
 
 // const routes = require("./routes");
 
@@ -22,10 +23,12 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "../client/images")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
