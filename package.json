@@ -17,6 +17,7 @@
     "concurrently": "^7.3.0"
   },
   "dependencies": {
+    "cloudinary-react": "^1.8.1",
     "express-async-handler": "^1.2.0"
   }
 }

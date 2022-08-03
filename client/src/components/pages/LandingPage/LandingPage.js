@@ -3,6 +3,16 @@ import { Container, Row } from 'react-bootstrap';
 import "./LandingPage.css";
 
 const LandingPage = () => {
+    // useEffect(() => {
+    //     const userInfo = localStorage.getItem("userInfo");
+        
+    //     if (userInfo) {
+    //       history.push("/reminders");
+    //     }
+        
+    //   }, [history, userInfo]);
+    //noon 8/3 not useing the usereffect
+
   return (
     <div className='main'>
         <Container>

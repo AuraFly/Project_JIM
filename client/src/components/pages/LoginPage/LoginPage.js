@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import MainPage from '../../MainPage/MainPage';
@@ -7,13 +7,15 @@ import "./loginScreen.css";
 import axios from "axios";
 
 
-const LoginPage = () => {
+const LoginPage = ({history}) => {
 
 
 const {email, setEmail} = useState("")
 const {password, setPassword} = useState("");
 const {error, setError} = useState(false);
 const {loading, setLoading} = useState(false);
+
+
 
 const submitHandler = async (e) => {
 e.preventDefault();
