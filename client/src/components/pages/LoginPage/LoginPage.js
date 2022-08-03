@@ -41,6 +41,7 @@ setLoading(false);
 
 } catch (error) {
   setError(error.response.data.message);
+  setLoading(false);
 }
 
 };
@@ -52,7 +53,9 @@ setLoading(false);
 
   return (
     <MainPage title="LOGIN">
-      <div className="loginContainer">
+      <div className="loginContainer">        
+        {error && <ErrorMessage varient="danger">{error}</ErrorMessage>}
+        {loading && <Loading/>} 
         <Form on onSubmit={submitHandler}>
           <Form.Group controlId='formBasicEmail'>
             <Form.Label> Email Address </Form.Label>
