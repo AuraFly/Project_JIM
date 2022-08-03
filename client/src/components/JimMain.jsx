@@ -5,9 +5,9 @@ import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
-// import LoginPage from "./pages/LoginPage/LoginPage"; 
-// import RegisterPage from "./pages/RegisterPage/RegisterPage"; 
-// import Landing from "./pages/Landing";
+import Login from "./pages/Login/Login"; 
+import Register from "./pages/Register/Register"; 
+import Landing from "./pages/Landing";
 import { AuthProvider } from "./pages/Login/context/AuthProvider";
 import Profile from "./Form";
 
@@ -40,15 +40,33 @@ export default function Maincontainer() {
         />
       );
     }
-    // if (currentPage === "Landing") {
-    //   return (
-    //     <Landing
-    //       currentPage={currentPage}
-    //       handlePageChange={handlePageChange}
-    //     />
-    //   );
+    if (currentPage === "Landing") {
+      return (
+        <Landing
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
+      );
 
-    // }
+    }
+
+    if (currentPage === "Login") {
+      return (
+        <Login
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
+      );
+
+      if (currentPage === "Register") {
+        return (
+          <Register
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        );  
+
+    }
       if (currentPage === "LandingPage") {
         return (
           <LandingPage

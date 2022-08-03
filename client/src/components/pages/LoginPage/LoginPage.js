@@ -13,12 +13,12 @@ const {error, setError} = useState(false);
 const {loading, setLoading} = useState(false);
 
 useEffect(() => {
-  const userInfo = localStorage.setItem("userInfo", JSON.stringify(data));
+  const userInfo = localStorage.getItem("userInfo");
 
   if (userInfo) {
   history.push("/reminders");
 }
-}, [history, userInfo]);
+}, [history]);
 
 const submitHandler = async (e) => {
 e.preventDefault();
