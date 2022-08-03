@@ -10,10 +10,13 @@ import { Link } from "react-router-dom";
 const RegisterPage = () => {
 
 const [email, setEmail] = useState("");
-const [name, setName] = useState("");
-const [pic, setPic] = useState("https://icon-library.com/icon/anonymous-avatar-icon-25.html");
+const [firstname, setFirstName] = useState("");
+const [lastname, setLastName] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
+const [instructorNumber, setInstructorNumber] = useState("");
+const{phone, setPhone} = useState("");
+const [pic, setPic] = useState("https://icon-library.com/icon/anonymous-avatar-icon-25.html");
 const [message, setMessage] = useState(null);
 const [picMessage, setPicMessage] = useState(null);
 const [error, setError] = useState(false);
@@ -90,12 +93,23 @@ const postDetails = (pics) => {
     {loading && <Loading/>}   
       
       <Form onSubmit={submitHandler}>
-    <Form.Group controlId="name">
-      <Form.Label>Name</Form.Label>
+
+    <Form.Group controlId="firstname">
+      <Form.Label>First Name</Form.Label>
       <Form.control
-      type="name"
-      value={name}
-      placeholder="Enter name"
+      type="firstname"
+      value={firstname}
+      placeholder="Enter first name"
+      onChange={(e) => setFirstName(e.target.value)}
+      />
+    </Form.Group>
+
+    <Form.Group controlId="lastname">
+      <Form.Label>Last Name</Form.Label>
+      <Form.control
+      type="lastname"
+      value={lastname}
+      placeholder="Enter last name"
       onChange={(e) => setName(e.target.value)}
       />
     </Form.Group>
@@ -130,10 +144,29 @@ const postDetails = (pics) => {
       />
     </Form.Group>
 
+    <Form.Group controlId="instructorNumber">
+      <Form.Label>Last Name</Form.Label>
+      <Form.control
+      type="instructorNumber"
+      value={instructorNumber}
+      placeholder="Enter Instructor Number"
+      onChange={(e) => setInstructorNumber(e.target.value)}
+      />
+    </Form.Group>
+
+    <Form.Group controlId="phone">
+      <Form.Label>Phone</Form.Label>
+      <Form.control
+      type="phone"
+      value={phone}
+      placeholder="Enter phone number"
+      onChange={(e) => setPhone(e.target.value)}
+      />
+    </Form.Group> 
+
     {picMessage && (
       <ErrorMessage varient="danger">{picMessage}</ErrorMessage>
     )}
-
 
 <Form.Group controlId="pic">
       <Form.Label>Profile Picture</Form.Label>
