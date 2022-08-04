@@ -6,7 +6,7 @@ function Navbar({ currentPage, handlePageChange }) {
     if (Auth.loggedIn()) {
       return (
         <a
-          href="#About"
+          href="#Logout"
           onClick={() => Auth.logout()}
           className={currentPage === "Login" ? "nav-link active" : "nav-link"}
         >
@@ -64,7 +64,7 @@ function Navbar({ currentPage, handlePageChange }) {
               currentPage === "Landing" ? "nav-link active" : "nav-link"
             }
           >
-            <p className="mr-5 hover:text-white">Landing?</p>
+            <p className="mr-5 hover:text-white">Reminders</p>
           </a>
           <a
             href="#Store"
@@ -75,7 +75,10 @@ function Navbar({ currentPage, handlePageChange }) {
           </a>
           <a
             href="#Contact"
-            onClick={() => handlePageChange("Contact")}
+            onClick={() => {
+              handlePageChange("Contact");
+              // window.location.reload();
+            }}
             className={
               currentPage === "Contact" ? "nav-link active" : "nav-link"
             }
