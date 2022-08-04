@@ -7,6 +7,7 @@ import CartItem from "./CartItem";
 import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import "./style.scss";
 
 const stripePromise = loadStripe(
   "pk_test_51LS2bvEmTHirmFazVgkgqYkMIg7Pk5EWGCsKHtzbJ6Tr4eJGdrllS2B0uUUXXZGE8DBLyWBX2eP9YigdlHYqKPKJ00z7M6WDzq"
@@ -77,7 +78,7 @@ const Cart = () => {
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
-      <h2>Shopping Cart</h2>
+      <h2 className="h2h">Shopping Cart</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (

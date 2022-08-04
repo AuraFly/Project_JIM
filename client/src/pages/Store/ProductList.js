@@ -44,10 +44,10 @@ function ProductList() {
   }
 
   return (
-    <div className="my-2">
-      <h2>Our Products:</h2>
+    <div className="">
+      <h2 className="text-white">Our Products:</h2>
       {state.products.length ? (
-        <div className="flex-row">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-4">
           {filterProducts().map((product) => (
             <ProductItem
               key={product._id}
@@ -56,6 +56,7 @@ function ProductList() {
               name={product.name}
               price={product.price}
               quantity={product.quantity}
+              likes={product.likes}
             />
           ))}
         </div>

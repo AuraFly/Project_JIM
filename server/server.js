@@ -49,8 +49,8 @@ app.use("/api", require("./routes/api-route"));
 
 app.use("/api/users", userRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
 //listener
 const startApolloServer = async (typeDefs, resolvers) => {

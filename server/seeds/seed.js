@@ -30,6 +30,7 @@ db.once("open", async () => {
       category: categories[0]._id,
       price: 0.99,
       quantity: 999,
+      likes: Math.floor(Math.random() * (50 - 0) + 0),
     },
     {
       name: "Invoice - Pro",
@@ -38,6 +39,7 @@ db.once("open", async () => {
       category: categories[0]._id,
       price: 2.99,
       quantity: 999,
+      likes: Math.floor(Math.random() * (50 - 0) + 0),
     },
     {
       name: "J.I.M. Mug",
@@ -46,6 +48,7 @@ db.once("open", async () => {
       category: categories[1]._id,
       price: 9.99,
       quantity: 25,
+      likes: Math.floor(Math.random() * (50 - 0) + 0),
     },
     {
       name: "J.I.M. T-Shirt",
@@ -55,6 +58,7 @@ db.once("open", async () => {
       size: ["XS", "S", "M", "LG", "XL", "2XL"],
       price: 15.99,
       quantity: 25,
+      likes: Math.floor(Math.random() * (50 - 0) + 0),
     },
     {
       name: "Coffee Tip",
@@ -63,6 +67,7 @@ db.once("open", async () => {
       category: categories[2]._id,
       price: 9.99,
       quantity: 25,
+      likes: Math.floor(Math.random() * (50 - 0) + 0),
     },
   ]);
 
