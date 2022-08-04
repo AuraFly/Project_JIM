@@ -1,16 +1,11 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 import "./LandingPage.css";
+// import { useEffect } from 'react';
 
 const LandingPage = () => {
-    // useEffect(() => {
-    //     const userInfo = localStorage.getItem("userInfo");
-        
-    //     if (userInfo) {
-    //       history.push("/reminders");
-    //     }
-        
-    //   }, [history, userInfo]);
+    
+    //use effect for history was taken out
     //noon 8/3 not useing the usereffect
 
   return (

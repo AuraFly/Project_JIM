@@ -3,7 +3,7 @@ import { Container } from 'rect-bootstrap';
 
 const MainPage = ({title, children}) => {
   return (
-    <div className='mainback'>
+    <div className='mainbackground'>
         <Container>
             <Row>
            <div className='page'>

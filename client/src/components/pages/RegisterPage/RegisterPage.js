@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MainPage from '../../MainPage/MainPage';
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage"; 
 import Loading from "../../Loading/Loading";
+import "./RegisterPage.css"
 // import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -13,8 +14,8 @@ const [firstname, setFirstName] = useState("");
 const [lastname, setLastName] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
-const [instructorNumber, setInstructorNumber] = useState("");
-const{phone, setPhone} = useState("");
+const [instructornumber, setInstructorNumber] = useState("");
+const[phone, setPhone] = useState("");
 const [pic, setPic] = useState("https://icon-library.com/icon/anonymous-avatar-icon-25.html");
 const [message, setMessage] = useState(null);
 const [picMessage, setPicMessage] = useState(null);
@@ -40,7 +41,7 @@ setLoading(true);
 
       const {data} = await axios.post(
         "/api/users",
-        { name, pic, email, password },
+        { firstname, lastname, pic, email, password, instructornumber, phone },
         config
       );
  
@@ -95,7 +96,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="firstname">
       <Form.Label>First Name</Form.Label>
-      <Form.control
+      <Form.Control
       type="firstname"
       value={firstname}
       placeholder="Enter first name"
@@ -105,7 +106,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="lastname">
       <Form.Label>Last Name</Form.Label>
-      <Form.control
+      <Form.Control
       type="lastname"
       value={lastname}
       placeholder="Enter last name"
@@ -115,7 +116,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="formBasicEmail">
       <Form.Label>Email address</Form.Label>
-      <Form.control
+      <Form.Control
       type="email"
       value={email}
       placeholder="Enter email"
@@ -125,7 +126,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="formBasicPassword">
       <Form.Label>Password</Form.Label>
-      <Form.control
+      <Form.Control
       type="password"
       value={password}
       placeholder="Password"
@@ -135,7 +136,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="confirmPassword">
       <Form.Label>Confirm Password</Form.Label>
-      <Form.control
+      <Form.Control
       type="password"
       value={confirmpassword}
       placeholder="Confirm Password"
@@ -145,9 +146,9 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="instructorNumber">
       <Form.Label>Last Name</Form.Label>
-      <Form.control
+      <Form.Control
       type="instructorNumber"
-      value={instructorNumber}
+      value={instructornumber}
       placeholder="Enter Instructor Number"
       onChange={(e) => setInstructorNumber(e.target.value)}
       />
@@ -155,7 +156,7 @@ const postDetails = (pics) => {
 
     <Form.Group controlId="phone">
       <Form.Label>Phone</Form.Label>
-      <Form.control
+      <Form.Control
       type="phone"
       value={phone}
       placeholder="Enter phone number"
@@ -177,6 +178,8 @@ const postDetails = (pics) => {
      custom
      />
 </Form.Group>
+
+<Button varient="primary" type="submit"> Submit </Button>
       </Form>
       
       </div>  
