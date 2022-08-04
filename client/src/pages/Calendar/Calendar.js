@@ -14,6 +14,7 @@
 import { GoogleLogin } from "react-google-login";
 import axios from "axios";
 import { useState } from "react";
+import { SpeakerphoneIcon, XIcon } from "@heroicons/react/outline";
 
 function Calendar() {
   const responseGoogle = (response) => {
@@ -23,7 +24,7 @@ function Calendar() {
       .post("/api/create-tokens", { code })
       .then((response) => {
         console.log(response.data);
-        setSignedIn(true);
+        // setSignedIn(true);
       })
       .catch((error) => console.log(error.message));
   };
@@ -56,14 +57,51 @@ function Calendar() {
   const [signedIn, setSignedIn] = useState(false);
 
   return (
-    <div id="calendar" className="relative">
-      <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
-        <h1 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
-          JIM Calendar
-        </h1>
+    <div id="calendar" className="relative justify-items-center">
+      <div className="bg-indigo-600">
+        <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between flex-wrap">
+            <div className="w-0 flex-1 flex items-center">
+              <span className="flex p-2 rounded-lg bg-indigo-800">
+                <SpeakerphoneIcon
+                  className="h-6 w-6 text-white"
+                  aria-hidden="true"
+                />
+              </span>
+              <p className="ml-3 font-medium text-white truncate">
+                <span className="md:hidden">We announced a new product!</span>
+                <span className="hidden md:inline">
+                  Big news! We're excited to announce a brand new product.
+                </span>
+              </p>
+            </div>
+            <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
+              <a
+                href="#"
+                className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"
+              >
+                Learn more
+              </a>
+            </div>
+            <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+              <button
+                type="button"
+                className="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
+              >
+                <span className="sr-only">Dismiss</span>
+                <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      {!signedIn ? (
+      <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap"></div>
+      {/* {!signedIn ? ( */}
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-2 justify-items-center gap-4">
         <div>
+          <h1 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
+            JIM Calendar
+          </h1>
           <GoogleLogin
             clientId="944796361588-30hshik247bbc3i2cs2h9tm1i52qihvj.apps.googleusercontent.com"
             buttonText="Sign in & Authorize Calendar"
@@ -76,100 +114,96 @@ function Calendar() {
             plugin_name="googleapis"
           />
         </div>
-      ) : (
-        <div>
-          <form
-            onSubmit={handleSubmit}
-            className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
-          >
-            <h2 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
-              Create an Event
-            </h2>
-            <div className="relative mb-4">
-              <label htmlFor="summary" className="leading-7 text-sm text-black">
-                Summary
-              </label>
-              <br />
-              <input
-                type="text"
-                id="summary"
-                className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                value={summary}
-                onChange={(e) => setSummary(e.target.value)}
-              />
-            </div>
-            <div className="relative mb-4">
-              <label
-                htmlFor="description"
-                className="leading-7 text-sm text-black"
-              >
-                Description
-              </label>
-              <br />
-              <textarea
-                id="description"
-                className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <div className="relative mb-4">
-              <label
-                htmlFor="location"
-                className="leading-7 text-sm text-black"
-              >
-                Location
-              </label>
-              <br />
-              <input
-                type="text"
-                id="location"
-                className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-            </div>
-            <div className="relative mb-4">
-              <label
-                htmlFor="startDateTime"
-                className="leading-7 text-sm text-black"
-              >
-                Start Date
-              </label>
-              <br />
-              <input
-                type="datetime-local"
-                id="startDateTime"
-                className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                value={startDateTime}
-                onChange={(e) => setStartDateTime(e.target.value)}
-              />
-            </div>
-            <div className="relative mb-4">
-              <label
-                htmlFor="endDateTime"
-                className="leading-7 text-sm text-black"
-              >
-                End Date
-              </label>
-              <br />
-              <input
-                type="datetime-local"
-                id="endDateTime"
-                className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                value={endDateTime}
-                onChange={(e) => setEndDateTime(e.target.value)}
-              />
-            </div>
-            <button
-              type="submit"
-              className="text-white bg-green-800 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+        {/* ) : ( */}
+        <form
+          onSubmit={handleSubmit}
+          className="lg:w-1/2 md:w-1/2 flex flex-col w-full "
+        >
+          <h2 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
+            Create an Event
+          </h2>
+          <div className="relative mb-4">
+            <label htmlFor="summary" className="leading-7 text-sm text-black">
+              Summary
+            </label>
+            <br />
+            <input
+              type="text"
+              id="summary"
+              className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={summary}
+              onChange={(e) => setSummary(e.target.value)}
+            />
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="description"
+              className="leading-7 text-sm text-black"
             >
-              Submit Event
-            </button>
-          </form>
-        </div>
-      )}
+              Description
+            </label>
+            <br />
+            <textarea
+              id="description"
+              className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="relative mb-4">
+            <label htmlFor="location" className="leading-7 text-sm text-black">
+              Location
+            </label>
+            <br />
+            <input
+              type="text"
+              id="location"
+              className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="startDateTime"
+              className="leading-7 text-sm text-black"
+            >
+              Start Date
+            </label>
+            <br />
+            <input
+              type="datetime-local"
+              id="startDateTime"
+              className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={startDateTime}
+              onChange={(e) => setStartDateTime(e.target.value)}
+            />
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="endDateTime"
+              className="leading-7 text-sm text-black"
+            >
+              End Date
+            </label>
+            <br />
+            <input
+              type="datetime-local"
+              id="endDateTime"
+              className="w-full bg-gray-200 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={endDateTime}
+              onChange={(e) => setEndDateTime(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="text-white bg-green-800 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          >
+            Submit Event
+          </button>
+        </form>
+        )
+      </div>
     </div>
   );
 }

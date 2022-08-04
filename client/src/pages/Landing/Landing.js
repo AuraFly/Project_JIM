@@ -13,20 +13,20 @@ const Landing = () => {
     <div>
       <div className="flex-row justify-center">
         <div
-          className="col-12 col-md-10 mb-3 p-3"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-2 justify-items-center gap-4"
           style={{ border: "1px dotted #1a1a1a" }}
         >
           <ReminderForm />
-        </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ReminderList
-              Reminders={Reminders}
-              title="Some Feed for Reminder(s)..."
-            />
-          )}
+          <div className="col-12 col-md-8 mb-3">
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <ReminderList
+                Reminders={Reminders}
+                title="Some Feed for Reminder(s)..."
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

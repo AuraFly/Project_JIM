@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/daygrid": "^5.11.2",
     "@fullcalendar/react": "^5.11.2",
+    "@heroicons/react": "^1.0.6",
     "@stripe/stripe-js": "^1.34.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
