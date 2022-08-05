@@ -5,6 +5,7 @@ import { ADD_REMINDER } from "../../../utils/mutations";
 import { QUERY_REMINDERS, QUERY_ME } from "../../../utils/queries";
 
 import Auth from "../../../utils/auth";
+import "./index.css";
 
 const ReminderForm = () => {
   const [reminderText, setReminderText] = useState("");
@@ -60,22 +61,22 @@ const ReminderForm = () => {
   };
 
   return (
-    <div>
-      <h3>Did you sub a class today?</h3>
-
+    <section className="reminder-box">
+      <p className="text-white italic">Did you sub a class today?</p>
+      <br />
       <>
-        <p
-          className={`m-0 ${
+        <h1
+          className={`m-0 text-white${
             characterCount === 280 || error ? "text-danger" : ""
           }`}
         >
           Character Count: {characterCount}/280
-        </p>
+        </h1>
         <form
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
         >
-          <div className="col-12 col-lg-9">
+          <div className="rem-box col-12 col-lg-9">
             <textarea
               name="reminderText"
               placeholder="Here's a new Reminder..."
@@ -87,9 +88,13 @@ const ReminderForm = () => {
           </div>
 
           <div className="col-12 col-lg-3">
-            <button className="btn btn-primary btn-block py-3" type="submit">
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
               Add Reminder
-            </button>
+            </a>
           </div>
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
@@ -98,7 +103,7 @@ const ReminderForm = () => {
           )}
         </form>
       </>
-    </div>
+    </section>
   );
 };
 

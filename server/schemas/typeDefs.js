@@ -32,6 +32,7 @@ const typeDefs = gql`
     isAdmin: Boolean
     pic: String
     orders: [Order]
+    calendar:[Calendar]
   }
 
   type Checkout {

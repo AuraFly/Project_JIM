@@ -1,83 +1,46 @@
-# Project JIM (Jazzercize Invoice Maker)
+# Final Project - J.I.M
+## Group 2  - Natalya Colburn, Jordan Covarrubias, David Irving, Jesus Rodriguez
 
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
-## Description:
-m
-Placeholder
 
-Project 3 - Team 2
+![University of Denver Logog](https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/denver-switchup-thumbnail-a/original.png?1560210160)
+## Project Inspiration
+ The basis of this idea came from Natalya Colburn. As a software develoiper who teaches Jazzersize on the side, she wanted a way to be able to help the community and keep scheduling and invoicing for all teachers to be fair and accurate. Thus came about J.I.M.. With J.I.M., users can login in and add classes and make sure that they can get paid!
 
-- Natalya Colburn
-- David Irving
-- Jesus Rodriguez
-- Jordan Covarrubias
+### Project Requirements
+ * Use React for the front end
+ * Use GraphQL with a Node.js and Express.js server
+ * Use MongoDB and the Mongoose ODM for the database
+ * Use queries and mutations for retrieving, adding, and updating, and deleting data
+ * Use a polished UI
+ * Be deployed with Heroku (with data)
+ * Be interactive (i.e., accept and respond to user input)
+ * Include authentication  (JWT)
 
-## Table of Contents
+ ### Technologies Used
+  * Email.js
+  * Tailwinds
+  * Express
+  * Node.js
+  * React
+  * Google API
+  * GreenSock
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contribution](#contribution)
-- [License](#license)
-- [Git Info](#git-info)
-- [Contact](#contact-me)
 
-# Installation
+### Website link
+* 
 
-Utilizes the MERN stack (Mongo/Express/React/Node)
-NPM packeges used:
+### Repository Link
+* https://github.com/AuraFly/Project_JIM
 
-1. SERVER:
-   apollo-server-express: 3.10.0
-   bcrypt: 5.0.1
-   cors: 2.8.5
-   dotenv: 16.0.1
-   express: 4.18.1
-   graphql: 16.5.0
-   jsonwebtoken: 8.5.1
-   mongoose: 6.5.0
+### Contributors Githubs
+ * Natalya Colburn
+   * https://github.com/NatalyaCo
+ * Jordan Covarrubias
+   * https://github.com/AuraFly
+ * David Irving
+   * https://github.com/David-Irving
+ * Jesus Rodriguea
+   * https://github.com/JesusRodriguezDev
 
-2. CLIENT:
-   @fullcalendar/daygrid: 5.11.2
-   @fullcalendar/react: 5.11.2
-   @testing-library/jest-dom: 5.16.4
-   @testing-library/react: 13.3.0
-   @testing-library/user-event: 13.5.0
-   gsap: 3.10.4
-   react: 18.2.0
-   react-dom: 18.2.0
-   react-scripts: 5.0.1
-   sass: 1.54.0
-   web-vitals: 2.1.4
-
----
-
-# Usage
-
-Deployed site:
-
-![example](./placeholder)
-
-Placeholder
-
-# Contribution
-
-Open to any and all contributions!
-
-# Git Info
-
-Placeholder
-
-# Contact Me
-
-Placeholder
-
-# License
-
-This application is covered under the MIT open source license.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### Website Preview
