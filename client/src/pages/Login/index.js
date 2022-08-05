@@ -52,7 +52,7 @@ function Login({ currentPage, handlePageChange, props }) {
                 Email:
               </label>
               <input
-                placeholder="youremail@test.com"
+                placeholder="Enter Email Here"
                 name="email"
                 type="email"
                 id="email"
