@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import emailjs from "emailjs-com";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const form = useRef();
@@ -8,10 +9,10 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs.sendForm(
-      "service_he9eh9p",
-      "template_thtvk5e",
+      "service_mij103q",
+      "template_mousw4j",
       form.current,
-      "RlgDcpRbmFbsJ3uZJ"
+      "0FF3XwwYjbygpYP56"
     );
     e.target.reset();
   };
