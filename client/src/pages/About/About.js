@@ -1,7 +1,7 @@
 import React from 'react';
 import Typed from 'react-typed';
 
-const Aboutme = () => {
+const Aboutme = ({ currentPage, handlePageChange }) => {
   return (
     <div className='text-white'>
       <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
@@ -20,7 +20,10 @@ const Aboutme = () => {
             backSpeed={140}
             loop
           />
-        <button className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'>Log in or Sign up</button>
+        <button className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'><a href="#Login" onClick={() => handlePageChange("Login")}
+            className={
+              currentPage === "#Login" ? "nav-link active" : "nav-link"
+            }>Log in or Sign up</a></button>
       </div>
     </div>
   );
