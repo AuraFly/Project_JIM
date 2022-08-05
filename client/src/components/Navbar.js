@@ -1,136 +1,38 @@
-import React from "react";
+import React, { useState } from 'react';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import Auth from "../utils/auth";
+import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
-function Navbar({ currentPage, handlePageChange }) {
-  function showNavigation() {
-    if (Auth.loggedIn()) {
-      return (
-        <a
-          href="#Logout"
-          onClick={() => Auth.logout()}
-          className={currentPage === "Login" ? "nav-link active" : "nav-link"}
-        >
-          <p className="mr-5 hover:text-white">Logout</p>
-        </a>
-      );
-    } else {
-      return (
-        <a
-          href="#Login"
-          onClick={() => handlePageChange("Login")}
-          className={currentPage === "Login" ? "nav-link active" : "nav-link"}
-        >
-          <p className="mr-5 hover:text-white">Login</p>
-        </a>
-      );
-    }
-  }
+const Navbar = () => {
+  const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
 
   return (
-    <header className="bg-green-800 md:sticky top-0 z-10">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <div className="title-font font-medium text-white mb-4 md:mb-0 ml-3 text-xl">
-          <a
-            href="#About"
-            onClick={() => handlePageChange("About")}
-            className={currentPage === "About" ? "nav-link active" : "nav-link"}
-          >
-            J.I.M. App
-          </a>
-        </div>
-        <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
-          <a
-            href="#Calendar"
-            onClick={() => handlePageChange("Calendar")}
-            className={
-              currentPage === "Calendar" ? "nav-link active" : "nav-link"
-            }
-          >
-            <p className="mr-5 hover:text-white">Calendar</p>
-          </a>
-          <a
-            href="#Profile"
-            onClick={() => handlePageChange("Profile")}
-            className={
-              currentPage === "Profile" ? "nav-link active" : "nav-link"
-            }
-          >
-            <p className="mr-5 hover:text-white">Profile</p>
-          </a>
-          <a
-            href="#Landing"
-            onClick={() => handlePageChange("Landing")}
-            className={
-              currentPage === "Landing" ? "nav-link active" : "nav-link"
-            }
-          >
-            <p className="mr-5 hover:text-white">Reminders</p>
-          </a>
-          <a
-            href="#Store"
-            onClick={() => handlePageChange("Store")}
-            className={currentPage === "Store" ? "nav-link active" : "nav-link"}
-          >
-            <p className="mr-5 hover:text-white">Store</p>
-          </a>
-          <a
-            href="#Contact"
-            onClick={() => {
-              handlePageChange("Contact");
-              // window.location.reload();
-            }}
-            className={
-              currentPage === "Contact" ? "nav-link active" : "nav-link"
-            }
-          >
-            <p className="mr-5 hover:text-white">Contact Us</p>
-          </a>
-          {showNavigation()}
-        </nav>
-        {/* <div className="w-full block flex-grow  lg:flex justify-end lg:items-center lg:w-auto">
-          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
-            <a href="https://www.linkedin.com/in/jcov/">
-              <img
-                src="./IMGGOESHERE.webp"
-                alt="ICONHERE"
-                className="h-10"
-                title="ICONHERE"
-              />
-            </a>
-          </div>
-          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
-            <a href="https://github.com/AuraFly">
-              <img
-                src="./IMG2GOESHERE.webp"
-                alt="ICON2HERE"
-                className="h-10"
-                title="ICON2"
-              />
-            </a>
-          </div>
-          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
-            <a href="mailto:AuraFlyDev@gmail.com">
-              <img
-                src="./IMG3GOESHERE.webp"
-                alt="ICON3HERE"
-                className="h-10"
-                title="ICON3"
-              />
-            </a>
-          </div>
-          <div className="inline-block text-sm px-4 py-2 leading-none border border-transparent rounded text-white hover:border-indigo-300 hover:bg-black-500 mt-4 lg:mt-0">
-            <a href="https://drive.google.com/file/d/1Q1wwNwJCbJkle2L6GyKnZGr8cA6P3R-t/view?usp=sharing">
-              <img
-                src="./IMG4GOESHERE.webp"
-                alt="ICON4HERE"
-                className="h-10"
-                title="ICON4"
-              />
-            </a>
-          </div> */}
+    <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
+      <h1 className='w-full text-3xl font-bold text-[#00df9a]'>J.I.M.</h1>
+      <ul className='hidden md:flex'>
+        <li className='p-4'><a href="#Calendar">Calendar</a></li>
+        <li className='p-4'><a href="#Profile">Profile</a></li>
+        <li className='p-4'><a href="#Landing">Landing</a></li>
+        <li className='p-4'><a href="#Store">Store</a></li>
+        <li className='p-4'><a href="#Contact">Contact</a></li>
+      </ul>
+      <div onClick={handleNav} className='block md:hidden'>
+          {nav ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20} />}
       </div>
-    </header>
+      <ul className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'}>
+        <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>J.I.M</h1>
+          <li className='p-4 border-b border-gray-600'>Calendar</li>
+          <li className='p-4 border-b border-gray-600'>Profile</li>
+          <li className='p-4 border-b border-gray-600'>Landing</li>
+          <li className='p-4 border-b border-gray-600'>Store</li>
+          <li className='p-4'>Contact</li>
+      </ul>
+    </div>
   );
-}
+};
 
 export default Navbar;

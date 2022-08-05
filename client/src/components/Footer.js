@@ -1,26 +1,60 @@
-import React from "react";
-import ItemsContainer from "./ItemsContainer";
+import React from 'react';
+import {
+  FaFacebookSquare,
+  FaGithub,
+  FaLinkedin,
+  FaReact,
+  FaInstagram,
+  FaTwitterSquare,
+} from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7">
-        <h1
-          className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold
-           md:w-2/5"
-        >
-          <span className="text-green-400">Let J.I.M. </span> handle it!
-        </h1>
+    <div className='max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-300'>
+      <div>
+        <h1 className='w-full text-3xl font-bold text-[#00df9a]'>Let J.I.M. handle it!</h1>
+        <p className='py-4'>This project was created by Natalya Colburn, Jordan Covarrubias, David Irving, and Jesus Rodriguez. Links to each of their profiles and bodies of work can be seen to the right.</p>
+        
       </div>
-      <ItemsContainer />
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10
-        text-center pt-2 text-gray-400 text-sm pb-8 bg-green-900"
-      >
-        <span></span>
-        <span>Created by DU BOOTCAMP Group 2 (BEST GROUP) </span>
+      <div className='lg:col-span-2 flex justify-between mt-6'>
+    <div>
+        <h6 className='text-2xl text-[#00df9a]'>Natalya Colburn</h6>
+        <ul>
+            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://github.com/NatalyaCo">Github</a><FaGithub size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/natalya-colburn-46bb2b1b2/">LinkedIn</a><FaLinkedin size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://natalyaco.github.io/Updated-Portfolio-wk16/">Portfolio</a><FaReact size={25} /></li>
+        </ul>
+    </div>
+    <div>
+        <h6 className='text-2xl text-[#00df9a]'>Jordan Covarrubias</h6>
+        <ul>
+            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://github.com/AuraFly">Github</a><FaGithub size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/jcov/">LinkedIn</a><FaLinkedin size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://aurafly.github.io/Portfolio/">Portfolio</a><FaReact size={25} /></li>
+        </ul>
+    </div>
+    <div>
+        <h6 className='text-2xl text-[#00df9a]'>David Irving</h6>
+        <ul>
+            <li className='py-2 text-sm'><a href="https://www.facebook.com/david.irving.3701/">Facebook</a><FaFacebookSquare size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://github.com/David-Irving">Github</a><FaGithub size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/david-j-irving/">LinkedIn</a><FaLinkedin size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://david-irving.github.io/react-portfolio/">Portfolio</a><FaReact size={25} /></li>
+        </ul>
+    </div>
+    <div>
+        <h6 className='text-2xl text-[#00df9a]'>Jesus Rodriguez</h6>
+        <ul>
+            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://github.com/JesusRodriguezDev">Github</a><FaGithub size={25} /></li>
+            <li className='py-2 text-sm'>LinkedIn<FaLinkedin size={25} /></li>
+            <li className='py-2 text-sm'><a href="https://jesusrodriguezdev.github.io/portfolio_react_version/">Portfolio</a><FaReact size={25} /></li>
+        </ul>
+    </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
