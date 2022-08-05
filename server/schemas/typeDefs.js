@@ -29,10 +29,11 @@ const typeDefs = gql`
     lastName: String
     email: String
     instructorNumber: String
+    phone: String
     isAdmin: Boolean
     pic: String
     orders: [Order]
-    calendar:[Calendar]
+   
   }
 
   type Checkout {
@@ -60,6 +61,7 @@ const typeDefs = gql`
       email: String!
       password: String!
       instructorNumber: String!
+      phone: String!
       isAdmin: String!
     ): Auth
     addOrder(products: [ID]!): Order
@@ -67,6 +69,8 @@ const typeDefs = gql`
       firstName: String
       lastName: String
       email: String
+      instructorNumber: String
+      phone: String
       password: String
     ): User
     updateProduct(_id: ID!, quantity: Int!): Product
