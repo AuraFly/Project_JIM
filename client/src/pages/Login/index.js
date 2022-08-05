@@ -1,59 +1,34 @@
-import { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "./context/AuthProvider";
-import axios from "./api/axios";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 import "./index.css";
 
-const LOGIN_URL = "/auth";
-
-const Login = ({ currentPage, handlePageChange }) => {
-  const { setAuth } = useContext(AuthContext);
-  const userRef = useRef();
-  const errRef = useRef();
-
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
+function Login({ currentPage, handlePageChange, props }) {
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [success, setSuccess] = useState(false);
+  const [login, { error }] = useMutation(LOGIN);
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
-      setPwd("");
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
       setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focus();
+    } catch (e) {
+      console.log(e);
     }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   return (
@@ -63,47 +38,38 @@ const Login = ({ currentPage, handlePageChange }) => {
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <a href="#" className="anchor">
+            <a href="#About" className="anchor">
               Go to Home
             </a>
           </p>
         </section>
       ) : (
         <section className="login-box">
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-
           <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            <div class="user-box">
-              <label className="labels" htmlFor="username">
-                Username:
+          <form onSubmit={handleFormSubmit} id="loginform">
+            <div className="user-box">
+              <label className="labels" htmlFor="email">
+                Email:
               </label>
               <input
-                type="text"
-                id="username"
-                ref={userRef}
+                placeholder="youremail@test.com"
+                name="email"
+                type="email"
+                id="email"
                 autoComplete="off"
-                onChange={(e) => setUser(e.target.value)}
-                value={user}
-                required
+                onChange={handleChange}
               />
             </div>
-            <div class="user-box">
+            <div className="user-box">
               <label className="labels" htmlFor="password">
                 Password:
               </label>
               <input
+                placeholder="Password"
+                name="password"
                 type="password"
-                id="password"
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                required
+                id="pwd"
+                onChange={handleChange}
               />
             </div>
             <a href="#">
@@ -111,8 +77,15 @@ const Login = ({ currentPage, handlePageChange }) => {
               <span></span>
               <span></span>
               <span></span>
-              Submit
+              <button type="submit">Submit</button>
             </a>
+            {error ? (
+              <div>
+                <p className="error-text">
+                  The provided credentials are incorrect
+                </p>
+              </div>
+            ) : null}
           </form>
           <p>
             Need an Account?
@@ -133,6 +106,6 @@ const Login = ({ currentPage, handlePageChange }) => {
       )}
     </>
   );
-};
+}
 
 export default Login;
