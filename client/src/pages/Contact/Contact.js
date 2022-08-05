@@ -18,6 +18,7 @@ emailjs.sendForm('service_mij103q', 'template_mousw4j', form.current, '0FF3XwwYj
         }, (error) => {
             console.log(error.text);
         });
+        e.target.reset();
     };
 
 
@@ -28,6 +29,13 @@ emailjs.sendForm('service_mij103q', 'template_mousw4j', form.current, '0FF3XwwYj
         <section className="contact" id="contact">
             <Container>
                 <Row className="align-items-center"> 
+                <Col size={12} md={6}>
+                        <TrackVisibility>
+                        {({ isVisible }) =>
+                            <img className={isVisible ? "animate_animated animate_zoomIn" : ""} src={contactImg} alt="Contact Me"/>
+                        }
+                        </TrackVisibility>
+                    </Col>
             <Col size={12} md={6}>
                 <TrackVisibility>
                         {({ isVisible }) =>
@@ -36,30 +44,25 @@ emailjs.sendForm('service_mij103q', 'template_mousw4j', form.current, '0FF3XwwYj
                             <form ref={form} onSubmit={sendEmail}>
                                 <Row>
                                     <Col size={12} sm={6} className="px-1">
-                                        <label>Name</label>
+                                        <h1>Name</h1>
                                         <input type="text" name="user_name" />
                                     </Col>
                                     <Col size={12} sm={6} className="px-1">
-                                        <label>Email</label>
+                                        <h1>Email</h1>
                                         <input type="email" name="user_email" />
                                     </Col>
                                     <Col size={12} className="px-1">
-                                        <label>Message</label>
+                                        <h1>Message</h1>
                                         <textarea rows="6" name="message" />     
-                                        <input type="submit" value="Send" />
+                                    </Col>
+                                    <Col>
+                                    <input type="submit" value="Send" />
                                     </Col>
                                 </Row>
                             </form>
                         </div>}
                     </TrackVisibility>
                 </Col>
-                <Col size={12} md={6}>
-                        <TrackVisibility>
-                        {({ isVisible }) =>
-                            <img className={isVisible ? "animate_animated animate_zoomIn" : ""} src={contactImg} alt="Contact Me"/>
-                        }
-                        </TrackVisibility>
-                    </Col>
             </Row>
         </Container>
     </section>

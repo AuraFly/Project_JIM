@@ -37,7 +37,7 @@ function ProductItem(item) {
   };
 
   return (
-    <div className="bg-white hover:bg-teal-900 shadow-xl hover:shadow-none cursor-pointer w-80 rounded-3xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
+    <div className="bg-white hover:bg-neutral-500 shadow-xl hover:text-white hover:shadow-none cursor-pointer w-80 rounded-3xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
       <div className="relative mt-2 mx-2">
         <Link to={`/products/${_id}`}>
           <div className="h-56 rounded-2xl overflow-hidden">

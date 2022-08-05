@@ -20,7 +20,7 @@ const Footer = () => {
     <div>
         <h6 className='text-2xl text-[#00df9a]'>Natalya Colburn</h6>
         <ul>
-            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            {/* <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li> */}
             <li className='py-2 text-sm'><a href="https://github.com/NatalyaCo">Github</a><FaGithub size={25} /></li>
             <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/natalya-colburn-46bb2b1b2/">LinkedIn</a><FaLinkedin size={25} /></li>
             <li className='py-2 text-sm'><a href="https://natalyaco.github.io/Updated-Portfolio-wk16/">Portfolio</a><FaReact size={25} /></li>
@@ -29,7 +29,7 @@ const Footer = () => {
     <div>
         <h6 className='text-2xl text-[#00df9a]'>Jordan Covarrubias</h6>
         <ul>
-            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            {/* <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li> */}
             <li className='py-2 text-sm'><a href="https://github.com/AuraFly">Github</a><FaGithub size={25} /></li>
             <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/jcov/">LinkedIn</a><FaLinkedin size={25} /></li>
             <li className='py-2 text-sm'><a href="https://aurafly.github.io/Portfolio/">Portfolio</a><FaReact size={25} /></li>
@@ -38,7 +38,7 @@ const Footer = () => {
     <div>
         <h6 className='text-2xl text-[#00df9a]'>David Irving</h6>
         <ul>
-            <li className='py-2 text-sm'><a href="https://www.facebook.com/david.irving.3701/">Facebook</a><FaFacebookSquare size={25} /></li>
+            {/* <li className='py-2 text-sm'><a href="https://www.facebook.com/david.irving.3701/">Facebook</a><FaFacebookSquare size={25} /></li> */}
             <li className='py-2 text-sm'><a href="https://github.com/David-Irving">Github</a><FaGithub size={25} /></li>
             <li className='py-2 text-sm'><a href="https://www.linkedin.com/in/david-j-irving/">LinkedIn</a><FaLinkedin size={25} /></li>
             <li className='py-2 text-sm'><a href="https://david-irving.github.io/react-portfolio/">Portfolio</a><FaReact size={25} /></li>
@@ -47,7 +47,7 @@ const Footer = () => {
     <div>
         <h6 className='text-2xl text-[#00df9a]'>Jesus Rodriguez</h6>
         <ul>
-            <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li>
+            {/* <li className='py-2 text-sm'>Facebook<FaFacebookSquare size={25} /></li> */}
             <li className='py-2 text-sm'><a href="https://github.com/JesusRodriguezDev">Github</a><FaGithub size={25} /></li>
             <li className='py-2 text-sm'>LinkedIn<FaLinkedin size={25} /></li>
             <li className='py-2 text-sm'><a href="https://jesusrodriguezdev.github.io/portfolio_react_version/">Portfolio</a><FaReact size={25} /></li>

@@ -28,7 +28,7 @@ const Navbar = ({ currentPage, handlePageChange }) => {
         <li className='p-4'><a href="#Landing" onClick={() => handlePageChange("Landing")}
             className={
               currentPage === "Landing" ? "nav-link active" : "nav-link"
-            }>Landing</a></li>
+            }>Reminders</a></li>
         <li className='p-4'><a href="#Store" onClick={() => handlePageChange("Store")}
             className={
               currentPage === "Store" ? "nav-link active" : "nav-link"
@@ -54,7 +54,7 @@ const Navbar = ({ currentPage, handlePageChange }) => {
           <li className='p-4 border-b border-gray-600'><a href="#Landing" onClick={() => handlePageChange("Landing")}
             className={
               currentPage === "Landing" ? "nav-link active" : "nav-link"
-            }>Landing</a></li>
+            }>Reminders</a></li>
           <li className='p-4 border-b border-gray-600'><a href="#Store" onClick={() => handlePageChange("Store")}
             className={
               currentPage === "Store" ? "nav-link active" : "nav-link"

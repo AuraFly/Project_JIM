@@ -43,7 +43,7 @@ function CategoryMenu() {
 
   return (
     <div>
-      <h2 className="cath2 text-white font-bold">Choose a Category:</h2>
+      <h2 className="cath2 text-white font-bold text-4xl">Choose a Category:</h2>
       {categories.map((item) => (
         <button
           className="catbtn text-white"
