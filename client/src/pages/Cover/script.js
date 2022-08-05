@@ -4,6 +4,10 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(Observer, SplitText);
 
+gsap.config({
+  nullTargetWarn: false,
+});
+
 let sections = document.querySelectorAll("section"),
   images = document.querySelectorAll(".bg"),
   headings = gsap.utils.toArray(".section-heading"),
