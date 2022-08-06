@@ -71,7 +71,7 @@ function Calendar() {
               <p className="ml-3 font-medium text-white truncate">
                 <span className="md:hidden">We announced a new product!</span>
                 <span className="hidden md:inline">
-                  Big news! We're excited to announce a brand new product.
+                  Big news! We're excited to announce the launch of our site!
                 </span>
               </p>
             </div>
@@ -123,7 +123,10 @@ function Calendar() {
             Create an Event
           </h2>
           <div className="relative mb-4">
-            <label htmlFor="summary" className="leading-7 text-sm text-[#00df9a]">
+            <label
+              htmlFor="summary"
+              className="leading-7 text-sm text-[#00df9a]"
+            >
               Summary
             </label>
             <br />
@@ -151,7 +154,10 @@ function Calendar() {
             />
           </div>
           <div className="relative mb-4">
-            <label htmlFor="location" className="leading-7 text-sm text-[#00df9a]">
+            <label
+              htmlFor="location"
+              className="leading-7 text-sm text-[#00df9a]"
+            >
               Location
             </label>
             <br />
