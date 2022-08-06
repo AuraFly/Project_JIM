@@ -1,10 +1,10 @@
 const asynchHandler = require("express-async-handler");
 const User = require("../models/User");
 
-const generateToken = require ("../utils/generateToken");
+const generateToken = require("../utils/generateToken");
 
 const registerUser = asynchHandler(async (req, res) => {
-  const { firsNname, lastName, email, instructorNumber, phone, password, pic } = req.body;
+  const { firstName, lastName, email, instructorNumber, password } = req.body;
 
   const userExits = await User.findOne({ email });
 
@@ -15,10 +15,10 @@ const registerUser = asynchHandler(async (req, res) => {
 
   const user = await User.create({
     firstName,
-    lastName, 
+    lastName,
     email,
     password,
-    instructorNumber, 
+    instructorNumber,
     phone,
     pic,
   });
