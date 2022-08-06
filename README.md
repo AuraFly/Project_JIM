@@ -28,7 +28,7 @@
 
 
 ### Website link
-* 
+* https://jimbodemo.herokuapp.com/
 
 ### Repository Link
 * https://github.com/AuraFly/Project_JIM
@@ -44,3 +44,4 @@
    * https://github.com/JesusRodriguezDev
 
 ### Website Preview
+![J I M](https://user-images.githubusercontent.com/99232675/183253986-c873d84f-10a2-472d-8737-607f38d0661e.png)
