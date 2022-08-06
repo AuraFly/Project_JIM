@@ -68,7 +68,7 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(this.password, this.password);
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 //commented out 8/2 by N
