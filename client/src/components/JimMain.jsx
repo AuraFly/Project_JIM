@@ -19,6 +19,7 @@ import Register from "../pages/Login/Register";
 import Profile from "..//components/Profile/Profile";
 import Landing from "../pages/Landing/Landing";
 import Store from "../pages/Store/Store";
+import Invoice from "../pages/Invoice/Invoice";
 import { AuthProvider } from "../pages/Login/context/AuthProvider";
 
 const httpLink = createHttpLink({
@@ -82,6 +83,14 @@ export default function Maincontainer() {
     if (currentPage === "Register") {
       return (
         <Register
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
+      );
+    }
+    if (currentPage === "Invoice") {
+      return (
+        <Invoice
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
