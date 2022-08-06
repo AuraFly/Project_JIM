@@ -1,6 +1,10 @@
 {
   "name": "jim_project3",
   "version": "0.1.0",
+  "engines": {
+    "node": "17.9.0",
+    "npm": "8.5.5"
+  },
   "private": true,
   "main": "server/server.js",
   "scripts": {
@@ -19,6 +23,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "express-async-handler": "^1.2.0",
+    "react-google-login": "^5.2.2",
     "react-typed": "^1.2.0"
   }
 }
