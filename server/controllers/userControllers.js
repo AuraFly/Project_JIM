@@ -1,9 +1,10 @@
 const asynchHandler = require("express-async-handler");
 const User = require("../models/User");
-const generateToken = require("../utils/generateToken");
+
+const generateToken = require ("../utils/generateToken");
 
 const registerUser = asynchHandler(async (req, res) => {
-  const { name, email, password, pic } = req.body;
+  const { firsNname, lastName, email, instructorNumber, phone, password, pic } = req.body;
 
   const userExits = await User.findOne({ email });
 
@@ -13,18 +14,24 @@ const registerUser = asynchHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    name,
+    firstName,
+    lastName, 
     email,
     password,
+    instructorNumber, 
+    phone,
     pic,
   });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       isAdmin: user.isAdmin,
+      instructorNumber: user.instructorNumber,
+      phone: user.phone,
       pic: user.pic,
       token: generateToken(user._id),
     });
@@ -45,6 +52,8 @@ const authUser = asynchHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      instructorNumber: user.instructorNumber,
+      phone: user.phone,
       pic: user.pic,
       token: generateToken(user._id),
     });
@@ -58,8 +67,11 @@ const updateUserProfile = asynchHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
 
   if (user) {
-    user.name = req.body.name || user.name;
+    user.firstName = req.body.firstName || user.FirstName;
+    user.lastName = req.body.lastName || user.LastName;
     user.email = req.body.email || user.email;
+    user.instructorNumber = req.body.instructorNumber || user.instructorNumber;
+    user.phone = req.body.phone || user.phone;
     user.pic = req.body.pic || user.pic;
 
     if (req.body.password) {
@@ -70,8 +82,11 @@ const updateUserProfile = asynchHandler(async (req, res) => {
 
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
       email: updatedUser.email,
+      instructorNumber: updatedUser.instructorNumber,
+      phone: updatedUser.phone,
       pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
     });

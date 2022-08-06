@@ -2,7 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const {
   User,
   Studio,
-  Reminder,
+  Reminders,
   Product,
   Category,
   Order,
@@ -106,7 +106,7 @@ const resolvers = {
   Mutation: {
     addUser: async (
       parent,
-      { firstName, lastName, email, password, instructorNumber, isAdmin, pic }
+      { firstName, lastName, email, password, instructorNumber, phone, isAdmin, pic }
     ) => {
       const user = await User.create({
         firstName,
@@ -114,6 +114,7 @@ const resolvers = {
         email,
         password,
         instructorNumber,
+        phone,
         isAdmin,
         pic,
       });

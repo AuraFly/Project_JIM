@@ -80,9 +80,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 // next(); (ends here N)
 
 // compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
+
 
 const User = model("User", userSchema);
 
