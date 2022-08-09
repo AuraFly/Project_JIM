@@ -15,7 +15,6 @@ const stripePromise = loadStripe(
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
-
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
@@ -74,34 +73,34 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart">
+    <div className="cart opacity-50 bg-gray-600 hover:opacity-100 hover:bg-green-800 shadow-xl hover:text-gray-400 cursor-pointer w-80 rounded-3xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
-      <h2 className="h2h">Shopping Cart</h2>
+      <h2 className="h2h text-white">Shopping Cart</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
 
-          <div className="flex-row space-between">
+          <div className="flex-row space-between text-green-200">
             <strong>Total: ${calculateTotal()}</strong>
-
+            <br />
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <button
+                className="font-bold text-blue-400"
+                onClick={submitCheckout}
+              >
+                Checkout
+              </button>
             ) : (
               <span>(log in to check out)</span>
             )}
           </div>
         </div>
       ) : (
-        <h3>
-          <span role="img" aria-label="shocked">
-            😱
-          </span>
-          You haven't added anything to your cart yet!
-        </h3>
+        <h3>Your shopping cart is empty!</h3>
       )}
     </div>
   );

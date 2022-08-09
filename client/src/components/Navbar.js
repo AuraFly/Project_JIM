@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Auth from "../utils/auth";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 const Navbar = ({ currentPage, handlePageChange }) => {
   const [nav, setNav] = useState(false);
