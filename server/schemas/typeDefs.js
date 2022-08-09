@@ -30,10 +30,8 @@ const typeDefs = gql`
     email: String
     instructorNumber: String
     phone: String
-    isAdmin: Boolean
     pic: String
     orders: [Order]
-   
   }
 
   type Checkout {
@@ -62,7 +60,6 @@ const typeDefs = gql`
       password: String!
       instructorNumber: String!
       phone: String!
-      isAdmin: String!
     ): Auth
     addOrder(products: [ID]!): Order
     updateUser(
