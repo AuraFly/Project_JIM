@@ -2,7 +2,6 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
-const cors = require("cors");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 //user routes added
@@ -39,7 +38,6 @@ app.get("/", (req, res) => {
 });
 
 //middleware
-app.use(cors({ origin: true, credentials: true }));
 
 //routes
 // app.use(routes);

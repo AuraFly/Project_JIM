@@ -16,7 +16,6 @@ import Calendar from "../pages/Calendar/Calendar";
 import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/index";
 import Register from "../pages/Login/Register";
-import Profile from "..//components/Profile/Profile";
 import Landing from "../pages/Landing/Landing";
 import Store from "../pages/Store/Store";
 import Invoice from "../pages/Invoice/Invoice";
@@ -42,15 +41,13 @@ const client = new ApolloClient({
 });
 
 export default function Maincontainer() {
-  const [currentPage, setCurrentPage] = useState("Aboutme");
+  const [currentPage, setCurrentPage] = useState("About");
+  const handlePageChange = (page) => setCurrentPage(page);
 
   const renderPage = () => {
-    if (currentPage === "Profile") {
+    if (currentPage === "About") {
       return (
-        <Profile
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
+        <About currentPage={currentPage} handlePageChange={handlePageChange} />
       );
     }
 
@@ -112,24 +109,24 @@ export default function Maincontainer() {
     return <About />;
   };
 
-  const handlePageChange = (page) => setCurrentPage(page);
-
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <StoreProvider>
-          <AuthProvider>
-            <main className="bg-cover text-gray-400 bg-white-800 body-font">
-              <Navbar
-                currentPage={currentPage}
-                handlePageChange={handlePageChange}
-              />
-              {renderPage()}
-              <Footer />
-            </main>
-          </AuthProvider>
-        </StoreProvider>
-      </Router>
-    </ApolloProvider>
+    <React.StrictMode>
+      <ApolloProvider client={client}>
+        <Router>
+          <StoreProvider>
+            <AuthProvider>
+              <main className="bg-cover text-gray-400 bg-white-800 body-font">
+                <Navbar
+                  currentPage={currentPage}
+                  handlePageChange={handlePageChange}
+                />
+                {renderPage()}
+                <Footer />
+              </main>
+            </AuthProvider>
+          </StoreProvider>
+        </Router>
+      </ApolloProvider>
+    </React.StrictMode>
   );
 }
